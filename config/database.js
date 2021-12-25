@@ -5,6 +5,9 @@ module.exports = ({ env }) => ({
     client: 'sqlite',
     connection: {
       filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+      ssl: {
+        rejectUnauthorized: false
+      },
     },
     useNullAsDefault: true,
     debug: false
