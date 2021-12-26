@@ -1,16 +1,20 @@
 module.exports = [
-  'strapi::errors', {
+  'strapi::errors',
+  'strapi::security',
+  {
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
+        useDefaults: true,
         directives: {
-          'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
-          'img-src': ["'self'", 'data:', 'cdn.jsdelivr.net', 'strapi.io', 'res.cloudinary.com', 'res.cloudinary.com', 'res.cloudinary.com/cv-abdi-creative'],
+          'connect-src': ["'self'", 'https:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
+          'media-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
+          upgradeInsecureRequests: null,
         },
-      }
+      },
     },
   },
-  'strapi::security',
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
